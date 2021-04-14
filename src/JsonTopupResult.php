@@ -11,28 +11,28 @@ class JsonTopupResult implements ITopupResult
     
     public function __construct($json)
     {
-        Log::debug(print_r($json, true));
+        //Log::debug(print_r($json, true));
         $this->cardCheck = $json;
     }
     
     public function isDelay()
     {
-        return $this->cardCheck->processCode == ProcessCode::DELAY_CARD;
+        return intval($this->cardCheck['processCode']) == ProcessCode::DELAY_CARD;
     }
 
     public function getValue()
     {
-        return $this->cardCheck->value;
+        return intval($this->cardCheck['value']);
     }
 
     public function getExplainMessage()
     {
-        return $this->cardCheck->message;
+        return $this->cardCheck['message'];
     }
 
     public function isSuccess()
     {
-        return $this->isDelay() || ($this->cardCheck->processCode == ProcessCode::VALID_CARD);
+        return $this->isDelay() || (intval($this->cardCheck['processCode']) == ProcessCode::VALID_CARD);
     }
 
     

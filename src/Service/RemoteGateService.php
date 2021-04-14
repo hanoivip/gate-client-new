@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 use CurlHelper;
 use Exception;
 use Hanoivip\GateClientNew\JsonTopupResult;
+use Hanoivip\GateClientNew\JsonRoutingResult;
 
 class RemoteGateService implements IGateService
 {
@@ -24,7 +25,7 @@ class RemoteGateService implements IGateService
         Log::debug('GateProxy dump prepare url:' . $url);
         $response = CurlHelper::factory($url)->setPostFields($data)->exec();
         Log::debug('GateProxy dump prepare response:' . print_r($response['data'], true));
-        return $response['data'];
+        return new JsonRoutingResult($response['data']);
     }
 
     public function refresh($session)
@@ -45,6 +46,7 @@ class RemoteGateService implements IGateService
         ];
         $url = config('gate.remote.uri') . "/api/" . config('gate.remote.version') . "/topup";
         $response = CurlHelper::factory($url)->setPostFields($data)->exec();
+        Log::debug("GateProxy dump prepaid:" . $response['content']);
         return new JsonTopupResult($response['data']);
     }
 
