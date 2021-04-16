@@ -11,7 +11,10 @@ class Delay extends Controller
     {
         $mapping = $request->input('mapping');
         $value = $request->input('value');
-        event(new DelayCard($mapping, $value));
+        $failed = false;
+        if ($request->has('failed'))
+            $failed = boolval($request->input('failed'));
+        event(new DelayCard($mapping, $value, $failed));
         return response("true");
     }
 }
