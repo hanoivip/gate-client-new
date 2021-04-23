@@ -9,8 +9,8 @@ interface IGateService
     public function status();
     /**
      * 
-     * @param unknown $type
-     * @param unknown $value
+     * @param string $type
+     * @param string $value
      * @return IRoutingResult
      */
     public function routing($type, $value);

@@ -4,7 +4,7 @@ namespace Hanoivip\GateClientNew\Service;
 
 use Hanoivip\GateClientNew\IGateService;
 use Illuminate\Support\Facades\Log;
-use CurlHelper;
+use Mervick\CurlHelper;
 use Exception;
 use Hanoivip\GateClientNew\JsonTopupResult;
 use Hanoivip\GateClientNew\JsonRoutingResult;
@@ -59,7 +59,7 @@ class RemoteGateService implements IGateService
     {
         $url = config('gate.remote.uri') . "/api/status";
         Log::debug('GateProxy dump status url:' . $url);
-        $response = \CurlHelper::factory($url)->exec();
+        $response = CurlHelper::factory($url)->exec();
         Log::debug('GateProxy dump status:' . $response['content']);
         return $response['data'];
     }

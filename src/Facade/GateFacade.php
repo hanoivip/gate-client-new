@@ -5,12 +5,12 @@ namespace Hanoivip\GateClientNew\Facade;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static mixed guard(string|null $name = null)
+ * @method static IRoutingResult routing(string $type, string $value)
  * @method static void shouldUse(string $name);
  * @method static bool check()
  * @method static bool guest()
  *
- * @see \Illuminate\Auth\AuthManager
+ * @see \Hanoivip\GateClientNew\IGateService
  */
 class GateFacade extends Facade
 {
