@@ -18,7 +18,7 @@ class JsonRoutingResult implements IRoutingResult
 
     public function gateSession()
     {
-        return $this->route['gateSession'];
+        return $this->route['session'];
     }
 
     public function isAvaiable()
